@@ -1,39 +1,93 @@
+# save as generate_commits.py
 import os
+import random
 from datetime import datetime, timedelta
 import subprocess
 
-def fix_contributions(repo_path):
+def create_commits(repo_path):
     os.chdir(repo_path)
     
-    # 1. Ensure we're on default branch (usually main/master)
-    default_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).decode().strip()
+    # Create realistic files
+    files = [
+        "src/main.py",
+        "src/utils.py",
+        "tests/test_core.py",
+        "docs/ARCHITECTURE.md",
+        ".github/workflows/ci.yml"
+    ]
     
-    # 2. Create real commits with proper email/name
-    for day in range(1, 51):
-        commit_date = (datetime.now() - timedelta(days=50-day)).strftime('%Y-%m-%d 12:00:00')
+    # Create directories if they don't exist
+    for f in files:
+        os.makedirs(os.path.dirname(f), exist_ok=True)
+    
+    for i in range(1, 101):
+        # Spread commits over 3 years
+        commit_date = datetime.now() - timedelta(days=random.randint(1, 1095))
+        date_str = commit_date.strftime("%Y-%m-%d %H:%M:%S")
         
-        # Create meaningful content
-        with open(f"contribution_{day}.txt", "w") as f:
-            f.write(f"Commit #{day} for GitHub contributions\n")
-            f.write(f"Date: {commit_date}\n")
+        # Select a file to modify
+        file_path = random.choice(files)
         
-        # Stage and commit with proper dates
+        # Generate realistic content based on file type
+        if file_path.endswith('.py'):
+            content = f'''# Commit {i} - {commit_date.strftime("%B %Y")}
+            
+def feature_{i}():
+    """Auto-generated feature for commit {i}"""
+    print("Implementing feature {i}")
+    
+    # {'Optimized' if i % 3 == 0 else 'Basic'} implementation
+    return {i * random.randint(1, 100)}
+'''
+        elif file_path.endswith('.md'):
+            content = f'''# Documentation Update (Commit {i})
+            
+**Date**: {commit_date.strftime("%Y-%m-%d")}
+            
+## Changes
+- {'Added' if i % 2 == 0 else 'Updated'} section {i % 5}
+- {'Fixed' if i % 4 == 0 else 'Improved'} documentation
+'''
+        elif file_path.endswith('.yml'):
+            content = f'''# CI/CD Configuration
+name: Workflow {i}
+on: [push, pull_request]
+            
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: python -m pytest tests/
+'''
+        
+        # Write to file
+        with open(file_path, 'w') as f:
+            f.write(content)
+        
+        # Git operations
         subprocess.run(['git', 'add', '.'], check=True)
         subprocess.run([
-            'git', '-c', 'user.name=YourName',
-            '-c', 'user.email=your-verified-email@example.com',
-            'commit', '--date', commit_date,
-            '-m', f"feat: Add contribution #{day}"
+            'git', 
+            '-c', 'user.name=Your Name',
+            '-c', 'user.email=your@email.com',
+            'commit', 
+            '--date', date_str,
+            '-m', f'{random.choice(["feat", "fix", "docs", "refactor"])}: Commit {i} - {commit_date.strftime("%Y-%m-%d")}'
         ], check=True)
+        
+        # Progress indicator
+        if i % 100 == 0:
+            print(f"Created {i} commits")
     
-    # 3. Push to default branch
-    subprocess.run(['git', 'push', 'origin', default_branch], check=True)
+    print("Pushing to GitHub...")
+    subprocess.run(['git', 'push', 'origin', 'main'], check=True)
 
 if __name__ == "__main__":
-    repo_path = input("Enter repository path: ").strip()
-    if not os.path.exists(os.path.join(repo_path, ".git")):
+    repo_path = input("Enter full path to your Git repository: ").strip()
+    if not os.path.exists(os.path.join(repo_path, '.git')):
         print("Error: Not a Git repository!")
         exit(1)
     
-    fix_contributions(repo_path)
-    print("Commits pushed. Wait ~24h for GitHub to update contributions graph.")
+    create_commits(repo_path)
