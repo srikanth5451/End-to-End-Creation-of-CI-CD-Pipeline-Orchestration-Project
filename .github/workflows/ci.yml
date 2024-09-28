@@ -1,5 +1,5 @@
 # CI/CD Configuration
-name: Workflow 24
+name: Workflow 26
 on: [push, pull_request]
             
 jobs:
