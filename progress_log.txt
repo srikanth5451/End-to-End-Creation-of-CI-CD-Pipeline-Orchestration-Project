@@ -31,3 +31,4 @@ Update 30: Implemented feature 935
 Update 31: Implemented feature 479
 Update 32: Implemented feature 948
 Update 33: Implemented feature 110
+Update 34: Implemented feature 527
