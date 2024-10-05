@@ -66,3 +66,4 @@ Update 15: Implemented feature 976
 Update 16: Implemented feature 714
 Update 17: Implemented feature 867
 Update 18: Implemented feature 539
+Update 19: Implemented feature 739
