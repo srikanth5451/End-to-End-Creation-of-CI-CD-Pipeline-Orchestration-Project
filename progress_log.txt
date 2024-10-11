@@ -109,3 +109,4 @@ Update 8: Implemented feature 983
 Update 9: Implemented feature 246
 Update 10: Implemented feature 781
 Update 11: Implemented feature 778
+Update 12: Implemented feature 569
