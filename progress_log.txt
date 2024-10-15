@@ -74,3 +74,4 @@ Update 23: Implemented feature 983
 Update 24: Implemented feature 638
 Update 25: Implemented feature 623
 Update 26: Implemented feature 389
+Update 27: Implemented feature 581
