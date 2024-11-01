@@ -42,3 +42,4 @@ Update 41: Implemented feature 684
 Update 42: Implemented feature 575
 Update 43: Implemented feature 528
 Update 44: Implemented feature 138
+Update 45: Implemented feature 193
