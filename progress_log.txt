@@ -123,3 +123,4 @@ Update 22: Implemented feature 754
 Update 23: Implemented feature 971
 Update 24: Implemented feature 622
 Update 25: Implemented feature 955
+Update 26: Implemented feature 729
