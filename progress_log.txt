@@ -79,3 +79,4 @@ Update 28: Implemented feature 164
 Update 29: Implemented feature 406
 Update 30: Implemented feature 360
 Update 31: Implemented feature 579
+Update 32: Implemented feature 678
