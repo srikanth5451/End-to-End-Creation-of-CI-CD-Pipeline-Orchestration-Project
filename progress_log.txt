@@ -45,3 +45,4 @@ Update 44: Implemented feature 138
 Update 45: Implemented feature 193
 Update 46: Implemented feature 269
 Update 47: Implemented feature 603
+Update 48: Implemented feature 460
