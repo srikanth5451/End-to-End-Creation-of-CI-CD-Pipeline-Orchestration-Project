@@ -127,3 +127,4 @@ Update 26: Implemented feature 729
 Update 27: Implemented feature 104
 Update 28: Implemented feature 180
 Update 29: Implemented feature 125
+Update 30: Implemented feature 530
