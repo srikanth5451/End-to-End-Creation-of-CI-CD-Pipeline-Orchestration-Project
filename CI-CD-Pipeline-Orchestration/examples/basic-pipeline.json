@@ -1,0 +1,29 @@
+{
+    "name": "sample-pipeline",
+    "branch": "main",
+    "workflowName": "ci-cd-workflow",
+    "stages": [
+        {
+            "name": "build",
+            "tasks": [
+                {
+                    "name": "build-app",
+                    "command": "dotnet build"
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "tasks": [
+                {
+                    "name": "unit-tests",
+                    "command": "dotnet test"
+                }
+            ]
+        }
+    ],
+    "notifications": {
+        "email": "devops@example.com",
+        "slackChannel": "#alerts"
+    }
+}
