@@ -58,3 +58,4 @@ Update 7: Implemented feature 616
 Update 8: Implemented feature 461
 Update 9: Implemented feature 178
 Update 10: Implemented feature 979
+Update 11: Implemented feature 851
