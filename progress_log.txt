@@ -20,3 +20,4 @@ Update 19: Implemented feature 354
 Update 20: Implemented feature 546
 Update 21: Implemented feature 584
 Update 22: Implemented feature 541
+Update 23: Implemented feature 294
