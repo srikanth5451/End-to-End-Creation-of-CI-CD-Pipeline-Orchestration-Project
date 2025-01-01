@@ -26,3 +26,4 @@ Update 25: Implemented feature 763
 Update 26: Implemented feature 836
 Update 27: Implemented feature 337
 Update 28: Implemented feature 238
+Update 29: Implemented feature 432
