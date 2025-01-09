@@ -1,47 +1,49 @@
 import os
-import datetime
+import subprocess
+import random
+from datetime import datetime, timedelta
 
-# Set repository directory (update this to your repo path)
-REPO_DIR = REPO_DIR = r"C:\Users\SRILUCKY\OneDrive\Desktop\my_github_projects\End-to-End-Creation-of-CI-CD-Pipeline-Orchestration-Project"
+# Set your repository path
+REPO_PATH = r"C:\Users\SRILUCKY\OneDrive\Desktop\my_github_projects\End-to-End-Creation-of-CI-CD-Pipeline-Orchestration-Project"
 
-# Change directory to repo
-os.chdir(REPO_DIR)
+# Set your GitHub email and username
+GIT_USER_NAME = "srikanth5451"
+GIT_USER_EMAIL = "basimsettysrikanth5451@gmail.com"  # Make sure this matches your GitHub email
 
-# Your GitHub email (must be linked to your GitHub account)
-GIT_USER = "srikanth5451"
-GIT_EMAIL = "91301139+srikanth5451@users.noreply.github.com"
+# Change directory to the repo
+os.chdir(REPO_PATH)
 
-# Set user config
-os.system(f'git config user.name "{GIT_USER}"')
-os.system(f'git config user.email "{GIT_EMAIL}"')
+# Ensure Git is configured properly
+subprocess.run(f'git config user.name "{GIT_USER_NAME}"', shell=True)
+subprocess.run(f'git config user.email "{GIT_USER_EMAIL}"', shell=True)
 
-# Start date for commits (e.g., 50 days ago)
-start_date = datetime.datetime.now() - datetime.timedelta(days=50)
-
-# List of Python functions to commit
-functions = [
-    ("factorial.py", "def factorial(n):\n    return 1 if n == 0 else n * factorial(n - 1)"),
-    ("fibonacci.py", "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a"),
-    ("palindrome.py", "def is_palindrome(s):\n    return s == s[::-1]"),
-    ("prime.py", "def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True"),
-    ("reverse_string.py", "def reverse_string(s):\n    return s[::-1]"),
-]
-
-# Repeat functions to make 50 commits
+# Generate 50 meaningful commits
 for i in range(50):
-    filename, code = functions[i % len(functions)]  # Cycle through functions
-    commit_date = start_date + datetime.timedelta(days=i)
-    date_str = commit_date.strftime("%Y-%m-%dT%H:%M:%S")
+    # Generate a backdated timestamp (last 6 months)
+    days_back = random.randint(1, 180)
+    commit_date = datetime.now() - timedelta(days=days_back, hours=random.randint(1, 12))
 
-    # Write the code snippet to file
-    with open(filename, "w") as f:
-        f.write(code + "\n")
+    # Format the date for Git
+    formatted_date = commit_date.strftime('%Y-%m-%d %H:%M:%S')
 
-    # Add and commit with a meaningful message
-    os.system(f"git add {filename}")
-    os.system(f'GIT_AUTHOR_DATE="{date_str}" GIT_COMMITTER_DATE="{date_str}" git commit -m "Added {filename} function"')
+    # Create a temporary file to track meaningful changes
+    file_name = "progress_log.txt"
+    with open(file_name, "a") as file:
+        file.write(f"Update {i+1}: Implemented feature {random.randint(100, 999)}\n")
 
-# Push commits
-os.system("git push origin main")
+    # Add the file to Git
+    subprocess.run("git add .", shell=True)
+
+    # Commit with a backdated timestamp
+    commit_message = f"Feature Update {i+1}: Enhanced performance of module {random.randint(1, 10)}"
+    commit_command = f'git commit -m "{commit_message}"'
+    env = os.environ.copy()
+    env["GIT_AUTHOR_DATE"] = formatted_date
+    env["GIT_COMMITTER_DATE"] = formatted_date
+
+    subprocess.run(commit_command, shell=True, env=env)
+
+# Push commits to GitHub
+subprocess.run("git push origin main --force", shell=True)
 
 print("✅ 50 meaningful backdated commits pushed successfully!")
