@@ -11,3 +11,4 @@ Update 10: Implemented feature 209
 Update 11: Implemented feature 722
 Update 12: Implemented feature 562
 Update 13: Implemented feature 959
+Update 14: Implemented feature 292
