@@ -119,3 +119,4 @@ Update 18: Implemented feature 885
 Update 19: Implemented feature 834
 Update 20: Implemented feature 532
 Update 21: Implemented feature 603
+Update 22: Implemented feature 754
