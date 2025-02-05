@@ -51,3 +51,4 @@ Update 50: Implemented feature 760
 Update 1: Implemented feature 231
 Update 2: Implemented feature 497
 Update 3: Implemented feature 572
+Update 4: Implemented feature 476
