@@ -8,7 +8,7 @@ REPO_PATH = r"C:\Users\SRILUCKY\OneDrive\Desktop\my_github_projects\End-to-End-C
 
 # Set your GitHub email and username
 GIT_USER_NAME = "srikanth5451"
-GIT_USER_EMAIL = "basimsettysrikanth5451@gmail.com"  # Make sure this matches your GitHub email
+GIT_USER_EMAIL = "91301139+srikanth5451@users.noreply.github.com"  # Make sure this matches your GitHub email
 
 # Change directory to the repo
 os.chdir(REPO_PATH)
