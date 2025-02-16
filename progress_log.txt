@@ -48,3 +48,4 @@ Update 47: Implemented feature 603
 Update 48: Implemented feature 460
 Update 49: Implemented feature 340
 Update 50: Implemented feature 760
+Update 1: Implemented feature 231
