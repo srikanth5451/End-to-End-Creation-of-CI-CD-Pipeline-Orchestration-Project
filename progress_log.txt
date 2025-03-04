@@ -94,3 +94,4 @@ Update 43: Implemented feature 901
 Update 44: Implemented feature 591
 Update 45: Implemented feature 631
 Update 46: Implemented feature 479
+Update 47: Implemented feature 400
