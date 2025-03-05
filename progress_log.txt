@@ -136,3 +136,4 @@ Update 35: Implemented feature 688
 Update 36: Implemented feature 675
 Update 37: Implemented feature 603
 Update 38: Implemented feature 204
+Update 39: Implemented feature 198
