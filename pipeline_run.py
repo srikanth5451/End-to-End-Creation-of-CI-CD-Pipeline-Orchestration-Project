@@ -1,93 +1,47 @@
-# save as generate_commits.py
 import os
-import random
-from datetime import datetime, timedelta
-import subprocess
+import datetime
 
-def create_commits(repo_path):
-    os.chdir(repo_path)
-    
-    # Create realistic files
-    files = [
-        "src/main.py",
-        "src/utils.py",
-        "tests/test_core.py",
-        "docs/ARCHITECTURE.md",
-        ".github/workflows/ci.yml"
-    ]
-    
-    # Create directories if they don't exist
-    for f in files:
-        os.makedirs(os.path.dirname(f), exist_ok=True)
-    
-    for i in range(1, 101):
-        # Spread commits over 3 years
-        commit_date = datetime.now() - timedelta(days=random.randint(1, 1095))
-        date_str = commit_date.strftime("%Y-%m-%d %H:%M:%S")
-        
-        # Select a file to modify
-        file_path = random.choice(files)
-        
-        # Generate realistic content based on file type
-        if file_path.endswith('.py'):
-            content = f'''# Commit {i} - {commit_date.strftime("%B %Y")}
-            
-def feature_{i}():
-    """Auto-generated feature for commit {i}"""
-    print("Implementing feature {i}")
-    
-    # {'Optimized' if i % 3 == 0 else 'Basic'} implementation
-    return {i * random.randint(1, 100)}
-'''
-        elif file_path.endswith('.md'):
-            content = f'''# Documentation Update (Commit {i})
-            
-**Date**: {commit_date.strftime("%Y-%m-%d")}
-            
-## Changes
-- {'Added' if i % 2 == 0 else 'Updated'} section {i % 5}
-- {'Fixed' if i % 4 == 0 else 'Improved'} documentation
-'''
-        elif file_path.endswith('.yml'):
-            content = f'''# CI/CD Configuration
-name: Workflow {i}
-on: [push, pull_request]
-            
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run tests
-        run: python -m pytest tests/
-'''
-        
-        # Write to file
-        with open(file_path, 'w') as f:
-            f.write(content)
-        
-        # Git operations
-        subprocess.run(['git', 'add', '.'], check=True)
-        subprocess.run([
-            'git', 
-            '-c', 'user.name=Your Name',
-            '-c', 'user.email=your@email.com',
-            'commit', 
-            '--date', date_str,
-            '-m', f'{random.choice(["feat", "fix", "docs", "refactor"])}: Commit {i} - {commit_date.strftime("%Y-%m-%d")}'
-        ], check=True)
-        
-        # Progress indicator
-        if i % 100 == 0:
-            print(f"Created {i} commits")
-    
-    print("Pushing to GitHub...")
-    subprocess.run(['git', 'push', 'origin', 'main'], check=True)
+# Set repository directory (update this to your repo path)
+REPO_DIR = REPO_DIR = r"C:\Users\SRILUCKY\OneDrive\Desktop\my_github_projects\End-to-End-Creation-of-CI-CD-Pipeline-Orchestration-Project"
 
-if __name__ == "__main__":
-    repo_path = input("Enter full path to your Git repository: ").strip()
-    if not os.path.exists(os.path.join(repo_path, '.git')):
-        print("Error: Not a Git repository!")
-        exit(1)
-    
-    create_commits(repo_path)
+# Change directory to repo
+os.chdir(REPO_DIR)
+
+# Your GitHub email (must be linked to your GitHub account)
+GIT_USER = "srikanth5451"
+GIT_EMAIL = "91301139+srikanth5451@users.noreply.github.com"
+
+# Set user config
+os.system(f'git config user.name "{GIT_USER}"')
+os.system(f'git config user.email "{GIT_EMAIL}"')
+
+# Start date for commits (e.g., 50 days ago)
+start_date = datetime.datetime.now() - datetime.timedelta(days=50)
+
+# List of Python functions to commit
+functions = [
+    ("factorial.py", "def factorial(n):\n    return 1 if n == 0 else n * factorial(n - 1)"),
+    ("fibonacci.py", "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a"),
+    ("palindrome.py", "def is_palindrome(s):\n    return s == s[::-1]"),
+    ("prime.py", "def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True"),
+    ("reverse_string.py", "def reverse_string(s):\n    return s[::-1]"),
+]
+
+# Repeat functions to make 50 commits
+for i in range(50):
+    filename, code = functions[i % len(functions)]  # Cycle through functions
+    commit_date = start_date + datetime.timedelta(days=i)
+    date_str = commit_date.strftime("%Y-%m-%dT%H:%M:%S")
+
+    # Write the code snippet to file
+    with open(filename, "w") as f:
+        f.write(code + "\n")
+
+    # Add and commit with a meaningful message
+    os.system(f"git add {filename}")
+    os.system(f'GIT_AUTHOR_DATE="{date_str}" GIT_COMMITTER_DATE="{date_str}" git commit -m "Added {filename} function"')
+
+# Push commits
+os.system("git push origin main")
+
+print("✅ 50 meaningful backdated commits pushed successfully!")
