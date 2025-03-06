@@ -145,3 +145,4 @@ Update 44: Implemented feature 721
 Update 45: Implemented feature 877
 Update 46: Implemented feature 668
 Update 47: Implemented feature 556
+Update 48: Implemented feature 280
