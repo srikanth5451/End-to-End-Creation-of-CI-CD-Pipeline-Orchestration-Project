@@ -64,3 +64,4 @@ Update 13: Implemented feature 591
 Update 14: Implemented feature 862
 Update 15: Implemented feature 976
 Update 16: Implemented feature 714
+Update 17: Implemented feature 867
