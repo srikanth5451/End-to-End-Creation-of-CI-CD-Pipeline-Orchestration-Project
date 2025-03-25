@@ -9,3 +9,4 @@ Update 8: Implemented feature 959
 Update 9: Implemented feature 301
 Update 10: Implemented feature 209
 Update 11: Implemented feature 722
+Update 12: Implemented feature 562
